@@ -1,0 +1,20 @@
+#sideNav{
+    background: #8080809e;
+    height: 100vh;
+    position: relative;
+    top: 5px;
+    a.mat-button {
+        text-align: left;
+        color: #fff;
+        background: #878788;
+        margin: 5px 0;
+    }
+}
+#sidebar{
+    min-width: 200px;
+    .mat-raised-button{
+        margin: 10px;
+        background: #069be5;
+        color: #fff;
+    }
+}
