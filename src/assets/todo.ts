@@ -1,6 +1,6 @@
 export class TodoFakeDb
 {
-    public static todos = [
+    public todos = [
         {
             'id'       : '561551bd7fe2ff461101c192',
             'title'    : 'Proident tempor est nulla irure ad est',
@@ -107,14 +107,7 @@ export class TodoFakeDb
             'starred'  : false,
             'important': false,
             'deleted'  : false,
-            'tags'     : [
-                {
-                    'id'   : 5,
-                    'name' : 'mobile',
-                    'label': 'Mobile',
-                    'color': '#9C27B0'
-                }
-            ]
+            'tags'     : [5]
         },
         {
             'id'       : '561551bd73d1a627e97005ce',
@@ -289,7 +282,7 @@ export class TodoFakeDb
         }
     ];
 
-    public static tags = [
+    public tags = [
         {
             'id'    : 1,
             'handle': 'frontend',

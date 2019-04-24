@@ -6,17 +6,27 @@ import {TodolistService} from '../../service/todolist.service';
   styleUrls: ['./all.component.scss']
 })
 export class AllComponent implements OnInit {
-
+  todoData:any[]=[];
+  todotags:any;
+  editTodo:any[]=[];
   constructor(private _listService:TodolistService) { }
 
   ngOnInit() {
-    this._listService.getTodolistadded();
+   
+   this.todoData = this._listService.getTodolistadded();
+   this.todotags = this._listService.getTodolisttags();
     console.log('show data', this._listService.getTodolistadded());
   }
 
-  showAddedData(){
-    this._listService.getTodolistadded();
-    console.log('show data', this._listService.getTodolistadded());
+  // showAddedData(){
+  //  this.todoData = this._listService.getTodolistadded();
+  //   console.log('show datadd', this._listService.getTodolistadded());
+  // }
+
+  editAlldata(editid){  
+    console.log('Alleditid',editid);
+    this.editTodo = this._listService.getTodolistByID(editid);
+    console.log('this.editTodo',this.editTodo);
   }
 
 }

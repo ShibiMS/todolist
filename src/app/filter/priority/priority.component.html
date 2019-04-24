@@ -1,0 +1,54 @@
+<section id="alltodo" class="content" fxLayout="row wrap" fxFlex="100" fxLayoutAlign="start start">
+    <div fxLayout="row wrap" fxFlex="100" fxLayoutAlign="start start">           
+                <div fxLayout="row wrap" fxFlex="50" class="todolistitemoutter">     
+                                
+                    <div fxLayout="row" fxFlex="100"  class="todolistitem" *ngFor="let todo of todoData, let i=index">                   
+                  
+                      
+                      <mat-card matRipple class="example-card">
+                          <mat-card-header>                          
+                               
+                          <mat-card-title>{{todo.title}}</mat-card-title>
+                            <mat-card-subtitle *ngIf="todo.completed===true">
+                              <span class="completeclass"><i class="material-icons">check_circle</i></span>
+                            </mat-card-subtitle>
+                            <mat-card-subtitle *ngIf="todo.starred===true">
+                                <span class="starredclass"><i class="material-icons">star_rate</i></span>
+                            </mat-card-subtitle>
+                            <mat-card-subtitle *ngIf="todo.important===true">
+                                  <span class="importantclass"><i class="material-icons">error_outline</i></span>
+                            </mat-card-subtitle>
+                            <mat-card-subtitle *ngIf="todo.deleted===true">
+                                    <span class="deleteclass"><i class="material-icons">delete_forever</i></span>
+                            </mat-card-subtitle>
+                          </mat-card-header>
+                          <p>
+                            <strong>Start Date:</strong>{{todo.startDate | date}}                                                                        
+                            <strong>Due Date:</strong>{{todo.dueDate | date}}
+                          </p>
+                          <mat-card-content>
+                            <p>
+                              {{todo.notes}}
+                            </p>
+                          </mat-card-content>
+                          <mat-card-actions>
+                              <div class="tagclass" *ngFor="let tags of todotags">
+                                  <div *ngFor="let tags2 of todo.tags">
+                                    <span *ngIf="tags.id==tags2" [style.background-color]="tags.color">{{tags.title}}</span>                              
+                                  </div>
+                              </div>                               
+                          </mat-card-actions>
+                        </mat-card>
+                 
+                  
+                </div>
+              
+            </div>
+            <div fxLayout="row wrap" fxFlex="50" fxLayoutAlign="start start">
+             
+            </div>
+          
+    </div>
+  </section>
+  
+  
