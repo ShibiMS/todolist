@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import{ TodoFakeDb } from '../../assets/todo';
+import { DatePipe } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
 export class TodolistService {
   adddata:any=[];
   dataarray:any;
-  constructor(private todoList: TodoFakeDb) { }
+  showTodo:any;
+  constructor(private todoList: TodoFakeDb,private datePipe: DatePipe) { }
 
   addTodolist(data){
     if(data)
@@ -35,51 +37,67 @@ export class TodolistService {
     return this.todoList.tags;
   }
   getTodolistStarred(){
-    let data = this.todoList.todos.filter((x) =>  x.starred === true );
+    let data = this.adddata.filter((x) =>  x.starred === true );
     console.log('datahere',data);
     return data; 
   }
   getTodolistCompleted(){
-    let data = this.todoList.todos.filter((x) =>  x.completed === true );
+    let data = this.adddata.filter((x) =>  x.completed === true );
     console.log('datahere',data);
     return data; 
   }
   getTodolistDeleted(){
-    let data = this.todoList.todos.filter((x) =>  x.deleted === true );
+    let data = this.adddata.filter((x) =>  x.deleted === true );
     console.log('datahere',data);
     return data; 
   }
   getTodolistPriority(){
-    let data = this.todoList.todos.filter((x) =>  x.important === true );
+    let data = this.adddata.filter((x) =>  x.important === true );
     console.log('datahere',data);
     return data; 
   }
   getTodolistSchedule(){
-    let data = this.todoList.todos.filter((x) =>  x.dueDate != null );
+    let data = this.adddata.filter((x) =>  x.dueDate != null );
     console.log('datahere',data);
     return data; 
   }
   getTodolistToday(){
-    let data = this.todoList.todos.filter((x) =>  x.dueDate != null );
+    let data = this.adddata.filter((x) =>   this.datePipe.transform(x.dueDate, 'yyyy-MM-dd') == this.datePipe.transform(new Date(), 'yyyy-MM-dd') );
     console.log('datahere',data);
+  
     return data; 
   }
 
-//   formatDate(date) {
-//     var d = new Date(date),
-//         month = '' + (d.getMonth() + 1),
-//         day = '' + d.getDate(),
-//         year = d.getFullYear();
-
-//     if (month.length < 2) month = '0' + month;
-//     if (day.length < 2) day = '0' + day;
-
-//     return [year, month, day].join('-');
-// }
-
-getTodolistByID(id){
+  getTodolistByID(id){
   console.log('adddatabyid', this.adddata)
-  return this.adddata.find(item => item.id === id);
+  //this.adddata.find(item => item.id === id);
+  this.showTodo = this.adddata.find(item => item.id === id);
+  return this.showTodo;
 }
 
+
+getdatafromservice(){
+  return this.showTodo;
+}
+
+updateToDoData(formData){ 
+const selectedArray = formData;console.log('selectedArray',selectedArray)
+const targetIdx = this.adddata.map(item => item.id).indexOf(selectedArray.id);
+this.adddata[targetIdx] = selectedArray;
+const newArray = this.adddata;
+console.log('newArray',newArray)
+this.getTodolistStarred();
+}
+
+deleteTodolistByID(id){
+  console.log(id)
+  console.log('b4deletefullarray',this.adddata)
+  
+  if (id > -1) {
+    this.adddata.splice(id, 1);
+    console.log('afterdelete',this.adddata);
+  }
+  // array = [2, 9]
+  
+}
 }

@@ -38,6 +38,8 @@
                                   </div>
                               </div>                                
                           </mat-card-actions>
+                          <button mat-button (click)="editAlldata(todo.id)">Edit</button>
+                              <button mat-button (click)="deleteAlldata(i)">Delete</button>  
                         </mat-card>
                  
                   
@@ -45,7 +47,7 @@
               
             </div>
             <div fxLayout="row wrap" fxFlex="50" fxLayoutAlign="start start">
-             
+                <app-showdata  fxLayout="row wrap" fxFlex="100" fxLayoutAlign="start start" [showeditDatabyId]=editTodo></app-showdata>
             </div>
           
     </div>

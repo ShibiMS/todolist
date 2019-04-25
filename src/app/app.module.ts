@@ -20,6 +20,7 @@ import { ScheduleComponent } from './filter/schedule/schedule.component';
 import { TodayComponent } from './filter/today/today.component';
 import { ShowdataComponent } from './showdata/showdata.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 const routes: Routes = [
   { path: '', component: AllComponent },
   { path: 'all', component: AllComponent },
@@ -65,7 +66,7 @@ const routes: Routes = [
     MatCheckboxModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [TodoFakeDb],
+  providers: [TodoFakeDb,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

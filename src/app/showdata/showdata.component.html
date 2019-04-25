@@ -1,9 +1,9 @@
-<div id="addForm" fxFlex="100" fxLayout="column">
+<div id="editForm" fxFlex="100" fxLayout="column" *ngIf="showeditDatabyId.title">
   <form [formGroup]="editTodoForm" fxFlex="100" fxLayout="column">
     <div fxFlex="100" fxLayout="row">
       <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
-        <input matInput placeholder="Title" value="{{showeditDatabyId.title}}" formControlName="title">
+        <input matInput placeholder="Title" formControlName="title">
       </mat-form-field>
     </div>
     <div fxFlex="100" fxLayout="row">
@@ -23,7 +23,7 @@
       </div>
       <div fxFlex="50" fxLayout="row">
         <mat-form-field>
-          <input matInput [matDatepicker]="picker2" placeholder="End Date" formControlName="dueDate">
+          <input matInput [matDatepicker]="picker2" placeholder="End Date" formControlName="dueDate" >
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
         </mat-form-field>
@@ -33,28 +33,34 @@
     <div fxFlex="100" fxLayout="row wrap">
       <h4>Filters</h4>
       <div fxFlex="50" fxLayout="row" class="filteradd">
-        <!-- <input type="checkbox" value="starred"  class="hiddencheckbox"><i class="material-icons" [ngClass]="{'filterclass': change === 'star' }" (click)="filterclick('star')">star_border</i>
-        <input type="checkbox" value="important" class="hiddencheckbox"><i class="material-icons" [ngClass]="{'filterclass': change === 'important' }" (click)="filterclick('important')">error_outline</i>  -->
-        <mat-checkbox value="starred" formControlName="starred">Starred</mat-checkbox>
-        <mat-checkbox value="important" formControlName="important">important</mat-checkbox>
-        <mat-checkbox value="done" formControlName="completed">Done</mat-checkbox>
-        <mat-checkbox value="delete" formControlName="deleted">Delete</mat-checkbox>
-        <!-- <input type="checkbox" value="delete" class="hiddencheckbox"><i class="material-icons" [ngClass]="{'filterclass': change === 'delete' }" (click)="filterclick('delete')">delete</i> -->
+        <mat-checkbox value="starred" formControlName="starred" [checked]="showeditDatabyId.starred === true">Starred</mat-checkbox>
+        <mat-checkbox value="important" formControlName="important" [checked]="showeditDatabyId.important === true">important</mat-checkbox>
+        <mat-checkbox value="done" formControlName="completed" [checked]="showeditDatabyId.completed === true">Done</mat-checkbox>
+        <mat-checkbox value="delete" formControlName="deleted" [checked]="showeditDatabyId.deleted === true">Delete</mat-checkbox>       
       </div>
     </div>
 
     <div fxFlex="100" fxLayout="row wrap">
         <h4>Tags</h4>
-        <div fxFlex="50" fxLayout="row" class="filteradd">        
-          <mat-checkbox value="Frontend" formControlName="frontend">Frontend</mat-checkbox>        
-          <mat-checkbox value="Backend" formControlName="backend">Backend</mat-checkbox>        
+        <div fxFlex="50" fxLayout="row" class="filteradd">
+          <div *ngFor="let tags of todotags">
+              <div *ngFor="let tags2 of showeditDatabyId.tags">
+                  <!-- <span *ngIf="tags.id==tags2" [style.background-color]="tags.color">{{tags.title}}</span> -->
+                 <!-- {{tags.id == tags2}} -->
+                  <mat-checkbox value="{{tags.id}}" formControlName="tags"  *ngIf="tags.id==tags2; else unchecked"  [checked]="tags.id == tags2">{{tags.title}}</mat-checkbox>                              
+                  <!-- <mat-checkbox value="{{tags.id}}" formControlName="tags" #unchecked >{{tags.title}}</mat-checkbox>                               -->
+                </div>
+          </div>      
+                 
+          <!-- <mat-checkbox value="Backend" formControlName="backend">Backend</mat-checkbox>        
           <mat-checkbox value="API" formControlName="api">API</mat-checkbox>        
           <mat-checkbox value="Issue" formControlName="issue">Issue</mat-checkbox>        
-          <mat-checkbox value="Mobile" formControlName="mobile">Mobile</mat-checkbox>        
+          <mat-checkbox value="Mobile" formControlName="mobile">Mobile</mat-checkbox>         -->
         </div>
     </div>
     <div fxFlex="100" fxLayout="row wrap">
-        <button mat-raised-button [disabled]="!editTodoForm.valid" (click)="submitAddTodo()">Add</button>
+        <!-- <button mat-raised-button [disabled]="!editTodoForm.valid" (click)="updateTodo()">Update</button> -->
+        <button mat-raised-button [disabled]="!editTodoForm.valid" (click)="updateTodo(showeditDatabyId.id)">Update</button>
     </div>
   </form>
 </div>

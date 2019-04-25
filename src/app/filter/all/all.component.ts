@@ -9,6 +9,7 @@ export class AllComponent implements OnInit {
   todoData:any[]=[];
   todotags:any;
   editTodo:any[]=[];
+  deleteTodo:any;
   constructor(private _listService:TodolistService) { }
 
   ngOnInit() {
@@ -29,4 +30,8 @@ export class AllComponent implements OnInit {
     console.log('this.editTodo',this.editTodo);
   }
 
+  deleteAlldata(deleteid){
+    this.deleteTodo = this._listService.deleteTodolistByID(deleteid);
+    console.log('delete1',this.deleteTodo)
+  }
 }

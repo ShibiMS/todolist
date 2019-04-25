@@ -1,0 +1,32 @@
+#editForm{
+    .mat-form-field{
+        width:100%;
+        margin:20px 0;
+        padding: 15px;
+    }
+    form{
+        padding:10px;
+    }
+    .filteradd{
+        margin:15px 30px;
+        .material-icons,.mat-checkbox {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .hiddencheckbox{
+            //z-index: -1;
+            // margin: 0px -25px;
+            // height: 25px;
+            // width: 25px;
+            // position: absolute;
+             display: none;
+            }
+    }
+    .mat-raised-button{
+        height:35px;
+    }
+    .filterclass{
+        color:#039be5;
+    }
+   
+}

@@ -1,0 +1,48 @@
+#alltodo{   
+   
+    mat-card{
+      width: 100%;
+      margin: 20px;
+    }
+
+    .todolistitemoutter{
+      height:100vh;
+      overflow-y:scroll;
+      margin: 15px 0;
+    }
+
+    .completeclass .material-icons{        
+        color: green;
+        font-weight: bold;      
+    }
+    
+    .starredclass .material-icons{        
+        color: #00adff;
+        font-weight: bold;        
+    }
+    
+    .importantclass .material-icons{         
+        color: blue;
+        font-weight: bold;
+    }
+   
+    .deleteclass .material-icons{ 
+        color: red;
+        font-weight: bold;
+    }
+    mat-card-subtitle.mat-card-subtitle {
+        display: inline-block;
+        margin: 0 5px 15px 0px;
+        width: 30px;
+    }
+    .tagclass {
+        display: inline-block;
+        margin-right: 5px;
+    }
+    .tagclass span{
+       padding: 5px;
+       border-radius:5px;
+       font-size:10px;
+       color:#fff;
+    }
+}
